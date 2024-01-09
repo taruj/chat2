@@ -1,3 +1,7 @@
+import streamlit as st
+import pandas as pd
+import numpy as np 
+
 try:
     from ctransformers import AutoModelForCausalLM
     print("ctransformers is installed correctly.")
@@ -21,6 +25,36 @@ input_ = None
 while input_ != 'end':
     input_ = input("Enter your question: ")
     print(llm(input_))
+    
+
+
+# Title of the app
+st.title("Streamlit Demo App")
+
+# Adding a slider
+slider_val = st.slider("Select a value", 0, 100, 50)
+st.write("Selected value:", slider_val)
+
+# Adding a text input
+text_val = st.text_input("Enter some text")
+st.write("Entered text:", text_val)
+
+# Generate a random DataFrame and display it
+data = pd.DataFrame(
+    np.random.randn(10, 5),
+    columns=('col %d' % i for i in range(5))
+)
+st.write("Randomly generated DataFrame:")
+st.dataframe(data)
+
+# Plotting data
+st.line_chart(data)
+
+# Interactive checkbox to show/hide data
+if st.checkbox("Show raw data"):
+    st.subheader("Raw data")
+    st.write(data)
+
 
 # looking for the list of employees of "Mismo Systems LLP", New Delhi, India.
 #  Here are some of the best ways to find employee directory:
